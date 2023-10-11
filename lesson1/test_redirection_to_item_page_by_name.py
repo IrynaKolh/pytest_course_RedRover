@@ -5,7 +5,7 @@ import time
 driver = webdriver.Chrome()
 
 
-def test_redirection_to_item_page():
+def test_redirection_to_item_page_by_name():
     driver.get("https://www.saucedemo.com/")
 
     username_field = driver.find_element(By.XPATH, '//input[@data-test="username"]')
@@ -17,11 +17,11 @@ def test_redirection_to_item_page():
     login_button = driver.find_element(By.XPATH, '//input[@data-test="login-button"]')
     login_button.click()
 
-    text_before = driver.find_element(By.XPATH, '//a[@id="item_3_title_link"]/div[@class="inventory_item_name"]').text
+    text_before = driver.find_element(By.XPATH, '//a[@id="item_5_title_link"]/div[@class="inventory_item_name"]').text
 
-    item = driver.find_element(By.XPATH, '//a[@id="item_3_img_link"]')
-    item.click()
+    item_name = driver.find_element(By.XPATH, '//a[@id="item_5_title_link"]/div[@class="inventory_item_name"]')
+    item_name.click()
 
-    text_after = driver.find_element(By.XPATH, "//div[contains(text(), 'T-Shirt (Red)')]").text
+    text_after = driver.find_element(By.XPATH, '//div[text()= "Sauce Labs Fleece Jacket"]').text
 
     assert text_before == text_after
